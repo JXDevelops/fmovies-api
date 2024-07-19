@@ -12,22 +12,22 @@ def getMovies(query, page, proxie):
     try:
         if proxie == 'true':
             if page != None:
-                base_url = f'https://fmovies.to/search?keyword={query}&page={page}'
+                base_url = f'https://web.netmovies.to/page/{page}/?s={query}'
                 currentPage = page
                 r = proxy.Proxy_Request(url=base_url, request_type='get')
                 soup = BeautifulSoup(r.content, 'lxml')
             else:
-                base_url = f'https://fmovies.to/search?keyword={query}'
+                base_url = f'https://web.netmovies.to/?s={query}'
                 currentPage = '1'
                 r = proxy.Proxy_Request(url=base_url, request_type='get')
                 soup = BeautifulSoup(r.content, 'lxml')
         else:
             if page != None:
-                base_url = f'https://fmovies.to/search?keyword={query}&page={page}'
+                base_url = f'https://web.netmovies.to/page/{page}/?s={query}'
                 currentPage = page
                 soup = BeautifulSoup(requests.get(base_url).content, 'lxml')
             else:
-                base_url = f'https://fmovies.to/search?keyword={query}'
+                base_url = f'https://web.netmovies.to/?s={query}'
                 currentPage = '1'
                 soup = BeautifulSoup(requests.get(base_url).content, 'lxml')
     except requests.exceptions.RequestException as e:
@@ -43,7 +43,7 @@ def getMovies(query, page, proxie):
         try:
             a = item.find('a')
             href = a.get('href')
-            link = f'https://fmovies.to{href}'
+            link = f'https://web.netmovies.to{href}'
         except Exception as e:
             link = str(e)
 
