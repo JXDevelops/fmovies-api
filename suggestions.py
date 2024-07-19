@@ -12,7 +12,7 @@ def getSuggestions(suggest, proxie):
 
     if proxie == 'true':
         try:
-            base_url = f'https://fmovies.to/home'
+            base_url = f'https://web.netmovies.to/home'
             r = proxy.Proxy_Request(url=base_url, request_type='get')
             soup = BeautifulSoup(r.content, 'lxml')
         except requests.exceptions.RequestException as e:
@@ -21,7 +21,7 @@ def getSuggestions(suggest, proxie):
             return suggestionsDictionary
     else:
         try:
-            base_url = f'https://fmovies.to/home'
+            base_url = f'https://web.netmovies.to/home'
             soup = BeautifulSoup(requests.get(base_url).content, 'lxml')
         except requests.exceptions.RequestException as e:
             suggestionsDictionary['success'] = False,
@@ -60,7 +60,7 @@ def recommendMovies(type):
         try:
             a = item.find('a')
             href = a.get('href')
-            link = f'https://fmovies.to{href}'
+            link = f'https://web.netmovies.to{href}'
         except Exception as e:
             link = str(e)
 
@@ -126,7 +126,7 @@ def recommendShows(type):
         try:
             a = item.find('a')
             href = a.get('href')
-            link = f'https://fmovies.to{href}'
+            link = f'https://web.netmovies.to{href}'
         except Exception as e:
             link = str(e)
 
@@ -192,7 +192,7 @@ def trending(type):
         try:
             a = item.find('a')
             href = a.get('href')
-            link = f'https://fmovies.to{href}'
+            link = f'https://web.netmovies.to{href}'
         except Exception as e:
             link = str(e)
 
